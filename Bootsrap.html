@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Proposal with Our Photo</title>
+    <style>
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background: linear-gradient(to bottom, #ffe6f2, #ffb3d9); font-family: 'Georgia', serif; margin: 0; overflow: hidden; }
+        #proposalContainer { text-align: center; color: #ff1493; font-size: 36px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        #buttons { margin-top: 20px; }
+        button { padding: 15px 30px; font-size: 18px; margin: 0 10px; border: none; border-radius: 25px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+        #yesBtn { background: linear-gradient(45deg, #ff69b4, #ff1493); color: white; }
+        #noBtn { background: linear-gradient(45deg, #ccc, #999); color: #333; }
+        #yesBtn:hover { transform: scale(1.05); }
+        #noBtn:hover { transform: scale(1.05); }
+        #photo { display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 80%; max-height: 70%; border-radius: 15px; box-shadow: 0 0 30px rgba(255, 105, 180, 0.6); object-fit: cover; }
+        .title { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); color: #ff1493; font-size: 28px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); display: none; }
+        .letter { position: absolute; top: 80px; left: 50%; transform: translateX(-50%); width: 600px; background: rgba(255, 255, 255, 0.95); padding: 20px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.2); font-size: 18px; line-height: 1.6; color: #333; display: none; text-align: center; z-index: 10; cursor: pointer; }
+        .message { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: #ff1493; font-size: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); display: none; }
+        #showLetterBtn { position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); padding: 10px 20px; background: linear-gradient(45deg, #ff69b4, #ff1493); color: white; border: none; border-radius: 20px; cursor: pointer; display: none; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+    <div id="proposalContainer">
+        <div>Can you be my Valentine?</div>
+        <div id="buttons">
+            <button id="yesBtn">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+    <div class="title">Happy Valentine's Day!</div>
+    <div class="letter" id="loveLetter">
+        <p>My Dearest Love,</p>
+        <p>Every day with you feels like a blessing I never thought I'd deserve. I am so incredibly lucky to have you in my life – your smile lights up my world, your laughter is my favorite melody, and your love is the anchor that keeps me grounded. I am endlessly thankful for the moments we've shared, the adventures we've embarked on, and the quiet nights where just being near you is enough.</p>
+        <p>You've shown me what true happiness feels like, and I promise to cherish you, support you, and love you with all my heart, now and forever. You are my everything.</p>
+        <p>With all my love,<br>Your Valentine</p>
+        <p style="font-size: 14px; margin-top: 10px;">(Click anywhere to see our photo)</p>
+    </div>
+    <!-- Placeholder for your photo: Replace 'your-photo.jpg' with the path to your image file (e.g., 'us.jpg'). Make sure the image is in the same folder or provide the full path. -->
+    <img id="photo" src="download.png" alt="Our Photo">
+    <div class="message" id="loveMessage">I love you! 💖</div>
+    <button id="showLetterBtn">Read Letter Again</button>
+    <script>
+        const proposalContainer = document.getElementById('proposalContainer');
+        const photo = document.getElementById('photo');
+        const title = document.querySelector('.title');
+        const loveLetter = document.getElementById('loveLetter');
+        const loveMessage = document.getElementById('loveMessage');
+        const showLetterBtn = document.getElementById('showLetterBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        let yesScale = 1;
+        let noCount = 0;
+
+        yesBtn.addEventListener('click', () => {
+            proposalContainer.style.display = 'none';
+            photo.style.display = 'block';
+            title.style.display = 'block';
+            loveLetter.style.display = 'block';
+            loveMessage.style.display = 'block';
+            showLetterBtn.style.display = 'block';
+        });
+
+        noBtn.addEventListener('click', () => {
+            noCount++;
+            yesScale += 0.2;
+            yesBtn.style.transform = `scale(${yesScale})`;
+            yesBtn.style.fontSize = `${18 + noCount * 2}px`;
+            yesBtn.style.padding = `${15 + noCount * 2}px ${30 + noCount * 4}px`;
+            alert("Are you sure? Think again! 😘");
+        });
+
+        // Hide letter on click to reveal photo
+        loveLetter.addEventListener('click', () => {
+            loveLetter.style.display = 'none';
+        });
+
+        // Show letter again button
+        showLetterBtn.addEventListener('click', () => {
+            loveLetter.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
